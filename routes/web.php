@@ -15,4 +15,6 @@ Route::resources([
     'commentaires' => CommentaireController::class,
     'idees' => IdeeController::class,
 ]);
-Route::resource('idees', IdeeController::class);
+
+
+Route::get('/categorie/{id}', [IdeeController::class, 'filtrerParCategorie'])->name('idees.categorie')->where('id', '[0-9]+');

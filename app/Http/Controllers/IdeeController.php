@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Idees\Mail\Mailable;
+use App\Models\Idee;
+use App\Models\Categorie;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreIdeeRequest;
 use App\Http\Requests\UpdateIdeeRequest;
-use App\Models\Idee;
 
 class IdeeController extends Controller
 {
@@ -13,8 +15,12 @@ class IdeeController extends Controller
      */
     public function index()
     {
-        $idees = idee::all();
-        return view('idees.index', compact('idees'));
+        // $idees = dee::with('categorie', 'rayon')->get();
+
+        $idees = Idee::all();
+        $categories=Categorie::all();
+
+        return view('idees.index', compact('idees','categories'));
     }
 
     /**
@@ -22,7 +28,9 @@ class IdeeController extends Controller
      */
     public function create()
     {
-        //
+        $idees = Idee::all();
+        $categories=Categorie::all();
+        return view('idees.create', compact('idees','categories'));
     }
 
     /**
@@ -30,7 +38,12 @@ class IdeeController extends Controller
      */
     public function store(StoreIdeeRequest $request)
     {
-        //
+        Mail::to('fallouniang776@gmail.com')
+        ->send(new Idee($request->except('_token')));
+    return view('confirm');
+
+        Idee::create($request->all());
+        return redirect('idees');
     }
 
     /**
@@ -64,4 +77,14 @@ class IdeeController extends Controller
     {
         //
     }
+
+
+    public function filtrerParCategorie($id)
+    {
+        $idees = Idee::where('categorie_id', $id)->get();
+        $categories = Categorie::all();
+        $categorieActuelle = Categorie::find($id);
+        return view('idees.index', compact('idees', 'categories', 'categorieActuelle'));
+    }
+    
 }

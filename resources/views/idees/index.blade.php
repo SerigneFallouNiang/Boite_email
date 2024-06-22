@@ -54,8 +54,17 @@
     </nav>
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div class="btn-group" role="group" aria-label="Filtres de catégories">
+            <a href="{{ route('idees.index') }}" class="btn btn-primary {{ !isset($categorieActuelle) ? 'active' : '' }}">Toutes les catégories</a>
+            @foreach($categories as $categorie)
+                <a href="{{ route('idees.categorie', $categorie->id) }}" class="btn btn-outline-primary">{{ $categorie->libelle }}</a> 
+                {{ isset($categorieActuelle) && $categorieActuelle->id == $categorie->id ? 'active' : '' }}
+            @endforeach
+        </div>
+
         <h2>Liste des idees</h2>
-        <a href="" class="btn btn-primary">Ajouter une Idée</a>
+        <a href="{{route('idees.create')}}" class="btn btn-primary">Ajouter une Idée</a>
     </div>
         <table class="table table-hover table-bordered border-primary">
             <thead class="table-primary">
@@ -77,7 +86,7 @@
                     <td>{{$idee->libelle}}</td>
                     <td>{{$idee->description}}</td>
                     <td>{{$idee->nom}}</td>
-                    <td>{{$idee->date_de_creation}}</td>
+                    <td>{{$idee->created_at}}</td>
                     <td>{{$idee->status}}</td>
                     <td>
                         <a href="{{ route('idees.edit', $idee->id) }}" class="btn btn-sm btn-warning">Modifier</a>
@@ -95,6 +104,30 @@
             </tbody>
         </table>
     </div>
+    <script>
+        const filterButtons = document.querySelectorAll('.btn-group button');
+        const bookCards = document.querySelectorAll('.book-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                filterBooks(filter);
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        function filterBooks(category) {
+            bookCards.forEach(card => {
+                const bookCategory = card.dataset.category;
+                if (category === 'all' || bookCategory === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFuCJvR5YkITJ4Mkh3w5Yb7VZ04f/7GFsiCZuyWb51Y5f6MeVVVtKRxP0" crossorigin="anonymous"></script>
 </body>
 </html>
