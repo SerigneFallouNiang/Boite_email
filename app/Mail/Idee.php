@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Idee as IdeeModel;
 
 class Idee extends Mailable
 {
@@ -17,7 +18,7 @@ class Idee extends Mailable
      * Create a new message instance.
      */
     public $idee;
-    public function __construct($idee)
+    public function __construct(Array $idee)
     {
         $this->idee = $idee;
 
@@ -39,7 +40,7 @@ class Idee extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.admin',
+            view: 'emails.admin',
         );
     }
 

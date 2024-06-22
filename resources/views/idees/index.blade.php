@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6TcjK4KfG4pM0iD0f4b8o3hY2lb1nqzj7fPvGZgtp9p9LdcoyJ6qILVEX4yIUsyT4Z4Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Gestion de livres</title>
+    <title>Gestion des idees</title>
     <style>
         .hero {
             background-image: url('https://img.freepik.com/photos-gratuite/librairie-moderne-presentant-rangees-livres-vibrants_60438-3565.jpg?t=st=1717754917~exp=1717758517~hmac=08ee922b1a55c1879816092cd500579d8d974b5e6d6968364bf866c60c8e5ff0&w=826');
@@ -24,34 +24,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            {{-- <a class="navbar-brand" href="{{route('livres.index')}}">Gestion de livres</a> --}}
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        {{-- <a class="nav-link active" aria-current="page" href="{{route('idees.index')}}">idees</a> --}}
-                    </li>
-                    <li class="nav-item">
-                        {{-- <a class="nav-link" href="{{route('rayons.index')}}">Rayons</a> --}}
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="ml-auto">
-                {{-- <form action="{{route('deconnexion')}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    {{-- <button class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</button> --}}
-                </form> --}}
-            </div>
-        </div>
-    </nav>
+   
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
 
@@ -70,9 +43,9 @@
             <thead class="table-primary">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nom</th>
                     <th scope="col">Libelle</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>

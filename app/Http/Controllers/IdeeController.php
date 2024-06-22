@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Idees\Mail\Mailable;
 use App\Models\Idee;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreIdeeRequest;
 use App\Http\Requests\UpdateIdeeRequest;
+use App\Mail\Idee as IdeeMail;
+use Illuminate\Mail\Mailable;
+
 
 class IdeeController extends Controller
 {
@@ -38,11 +40,11 @@ class IdeeController extends Controller
      */
     public function store(StoreIdeeRequest $request)
     {
-        Mail::to('fallouniang776@gmail.com')
-        ->send(new Idee($request->except('_token')));
-    return view('confirm');
-
         Idee::create($request->all());
+
+        Mail::to('fallouniang776@gmail.com')
+        ->send(new IdeeMail($request->except('_token')));
+    return view('emails.confirmeSubmetIdee');
         return redirect('idees');
     }
 
