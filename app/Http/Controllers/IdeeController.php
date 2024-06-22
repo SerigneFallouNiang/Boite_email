@@ -13,7 +13,8 @@ class IdeeController extends Controller
      */
     public function index()
     {
-        //
+        $idees = idee::all();
+        return view('idees.index', compact('idees'));
     }
 
     /**

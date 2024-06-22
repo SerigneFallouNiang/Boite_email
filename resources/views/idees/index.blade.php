@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        {{-- <a class="nav-link active" aria-current="page" href="{{route('categories.index')}}">Categories</a> --}}
+                        {{-- <a class="nav-link active" aria-current="page" href="{{route('idees.index')}}">idees</a> --}}
                     </li>
                     <li class="nav-item">
                         {{-- <a class="nav-link" href="{{route('rayons.index')}}">Rayons</a> --}}
@@ -54,7 +54,7 @@
     </nav>
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Liste des Categories</h2>
+        <h2>Liste des idees</h2>
         <a href="" class="btn btn-primary">Ajouter une Idée</a>
     </div>
         <table class="table table-hover table-bordered border-primary">
@@ -67,19 +67,21 @@
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
-                    'nom','description', 'date_de_creation','status','categorie_id',,
 
                 </tr>
             </thead>
             <tbody>
-                @foreach($categories as $categorie)
+                @foreach($idees as $idee)
                 <tr>
-                    <th scope="row">{{$categorie->id}}</th>
-                    <td>{{$categorie->libelle}}</td>
-                    <td>{{$categorie->description}}</td>
+                    <th scope="row">{{$idee->id}}</th>
+                    <td>{{$idee->libelle}}</td>
+                    <td>{{$idee->description}}</td>
+                    <td>{{$idee->nom}}</td>
+                    <td>{{$idee->date_de_creation}}</td>
+                    <td>{{$idee->status}}</td>
                     <td>
-                        <a href="{{ route('categories.edit', $categorie->id) }}" class="btn btn-sm btn-warning">Modifier</a>
-                        <form action="{{ route('categories.destroy', $categorie->id) }}" method="POST" class="d-inline"
+                        <a href="{{ route('idees.edit', $idee->id) }}" class="btn btn-sm btn-warning">Modifier</a>
+                        <form action="{{ route('idees.destroy', $idee->id) }}" method="POST" class="d-inline"
                             onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?');">
                             @csrf
                             @method('DELETE')
