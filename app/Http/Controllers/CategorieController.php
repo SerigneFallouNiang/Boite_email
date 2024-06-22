@@ -45,9 +45,10 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categorie $categorie)
+    public function edit(Categorie $category)
     {
-        //
+        $categories=Categorie::find($category);
+        return view('categories.update', compact('categories'));
     }
 
     /**
@@ -61,9 +62,9 @@ class CategorieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categorie $categorie)
+    public function destroy(Categorie $category)
     {
-        $categorie->delete();
+        $category->delete();
     return redirect('categories')->with('success', 'Catégorie supprimée avec succès.');
     }
 }

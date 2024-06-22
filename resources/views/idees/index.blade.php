@@ -55,15 +55,20 @@
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Liste des Categories</h2>
-        <a href="{{route('categories.create')}}" class="btn btn-primary">Ajouter une categories</a>
+        <a href="" class="btn btn-primary">Ajouter une Idée</a>
     </div>
         <table class="table table-hover table-bordered border-primary">
             <thead class="table-primary">
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Libelle</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
+                    'nom','description', 'date_de_creation','status','categorie_id',,
+
                 </tr>
             </thead>
             <tbody>
