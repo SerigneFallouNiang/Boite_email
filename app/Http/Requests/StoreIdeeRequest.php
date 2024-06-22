@@ -11,7 +11,7 @@ class StoreIdeeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreIdeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nom' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'libelle' => 'required|string|max:255',
+            'description' => 'required|string',
+            'categorie_id' => 'required|exists:categories,id',
         ];
     }
 }

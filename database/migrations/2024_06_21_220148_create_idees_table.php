@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('email');
             $table->string('libelle');
-            $table->string('date_de_creation');
-            $table->string('status');
+            $table->string('status')->default('inapprouvé');
             $table->timestamps();
         });
     }
