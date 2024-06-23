@@ -61,7 +61,9 @@ class IdeeController extends Controller
      */
     public function edit(Idee $idee)
     {
-        //
+        $categories=Categorie::all();
+        return view('idees.update', compact('idee','categories'));
+
     }
 
     /**
@@ -69,7 +71,8 @@ class IdeeController extends Controller
      */
     public function update(UpdateIdeeRequest $request, Idee $idee)
     {
-        //
+        $idee->update($request->validated());
+        return redirect('idees')->with('success', 'Idée mise à jour avec succès.');
     }
 
     /**
