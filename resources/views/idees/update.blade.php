@@ -89,8 +89,10 @@
                                 <select name="categorie_id" id="categorie_id" class="form-select" required>
                                     <option value="">Choisissez une catégorie</option>
                                     @foreach ($categories as $categorie)
-                                        <option value="{{ $categorie->id }}">{{ $categorie->libelle }}</option>
-                                    @endforeach
+                                    <option value="{{ $categorie->id }}" {{ $idee->categorie_id == $categorie->id ? 'selected' : '' }}>
+                                        {{ $categorie->libelle }}
+                                    </option>
+                                @endforeach
                                 </select>
                                 @error('categorie_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
