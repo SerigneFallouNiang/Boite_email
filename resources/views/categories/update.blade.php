@@ -17,18 +17,28 @@
                         <h3 class="card-title">Mis à jour du categorie</h3>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        <form action="{{ route('categories.update', $category->id) }}" method="POST">
                             @csrf
-                            <input type="text" name="id" style="display: none;"  value="{{$categories->id}}">
+                            @method('PUT')
+                            <input type="text" name="id" style="display: none;"  value="{{$category->id}}">
 
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Libelle</label>
-                                <input type="text" class="form-control" id="libelle"  name="libelle"  value="{{$categories->libelle}}">
+                                <input type="text" class="form-control" id="libelle"  name="libelle"  value="{{$category->libelle}}">
 
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea name="description" id="description" class="form-control" >{{$categories->description}}</textarea>
+                                <textarea name="description" id="description" class="form-control" >{{$category->description}}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">mettre à jour  le categorie</button>
                         </form>

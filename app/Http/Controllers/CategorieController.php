@@ -47,16 +47,16 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $category)
     {
-        $categories=Categorie::find($category);
-        return view('categories.update', compact('categories'));
+        return view('categories.update', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategorieRequest $request, Categorie $categorie)
+    public function update(UpdateCategorieRequest $request, Categorie $category)
     {
-        //
+        $category->update($request->validated());
+        return redirect('categories')->with('success', 'Catégorie mise à jour avec succès.');
     }
 
     /**
