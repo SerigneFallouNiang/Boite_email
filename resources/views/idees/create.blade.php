@@ -40,6 +40,18 @@
                         <h4 class="mb-0">Ajouter une nouvelle Idée</h4>
                     </div>
                     <div class="card-body">
+                        @if (session('status'))
+                        <div class="alert alert-succes">
+                          {{session('status')}}
+                        </div>
+                    @endif
+          
+                        <ul>
+                          @foreach ($errors->all() as $error)
+                          <li class="alert alert-danger">{{$error}}</li>
+                              
+                          @endforeach
+                        </ul>
                         <form method="post" action="{{route('idees.store')}}" class="row g-3">
                             @csrf
                             <div class="col-md-12">

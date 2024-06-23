@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Idee;
 use App\Models\Categorie;
+use Illuminate\Mail\Mailable;
+use App\Mail\Idee as IdeeMail;
+use App\Mail\IdeaStatusChanged;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreIdeeRequest;
 use App\Http\Requests\UpdateIdeeRequest;
-use App\Mail\Idee as IdeeMail;
-use Illuminate\Mail\Mailable;
 
 
 class IdeeController extends Controller
@@ -53,7 +53,7 @@ class IdeeController extends Controller
      */
     public function show(Idee $idee)
     {
-        //
+        return view('idees.show', compact('idee'));
     }
 
     /**
@@ -77,7 +77,8 @@ class IdeeController extends Controller
      */
     public function destroy(Idee $idee)
     {
-        //
+        $idee->delete();
+    return redirect('idees')->with('success', 'Idee supprimée avec succès.');
     }
 
 
@@ -87,6 +88,30 @@ class IdeeController extends Controller
         $categories = Categorie::all();
         $categorieActuelle = Categorie::find($id);
         return view('idees.index', compact('idees', 'categories', 'categorieActuelle'));
+    }
+
+
+
+    public function accepter(Idee $idee)
+    {
+        $idee->update(['status' => 'acceptée']);
+        $this->notifyUser($idee, 'acceptée');
+        return redirect()->route('idees.show', $idee)->with('success', 'Idée acceptée avec succès.');
+    }
+
+    public function refuser(Idee $idee)
+    {
+        $idee->update(['status' => 'refusée']);
+        $this->notifyUser($idee, 'refusée');
+        return redirect()->route('idees.show', $idee)->with('success', 'Idée refusée avec succès.');
+    }
+
+    private function notifyUser(Idee $idee, string $status)
+    {
+        Mail::to($idee->email)->send(new IdeaStatusChanged($idee, $status));
+
+    return view('emails.confirmeSubmetIdee');
+        // return redirect('idees');
     }
     
 }

@@ -69,6 +69,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
                         </form>
+                        <a href="{{ route('idees.show', $idee->id) }}" class="btn btn-sm btn-warning">Detail</a>
 
 
                     </td>
