@@ -30,3 +30,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 // Dans routes/web.php
 Route::post('/idees/{idee}/accepter', [IdeeController::class, 'accepter'])->name('idees.accepter');
 Route::post('/idees/{idee}/refuser', [IdeeController::class, 'refuser'])->name('idees.refuser');
+
+
+Route::get('/login', [RegisterController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [RegisterController::class, 'login']);
+Route::post('/logout', [RegisterController::class, 'logout'])->name('logout');

@@ -5,6 +5,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -36,5 +37,29 @@ class RegisterController extends Controller
         auth()->login($user);
 
         return redirect('/idees');
+    }
+
+    
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('idees');
+        }
+
+        return back()->withErrors([
+            'email' => 'Les identifiants fournis ne correspondent pas à nos enregistrements.',
+        ]);
     }
 }
