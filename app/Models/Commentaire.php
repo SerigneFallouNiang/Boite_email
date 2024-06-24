@@ -17,5 +17,8 @@ class Commentaire extends Model
         'idee_id',
     ];
 
-    
+    public function idee()
+    {
+        return $this->belongsTo(Idee::class);
+    }
 }

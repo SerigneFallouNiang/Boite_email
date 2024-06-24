@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Idee;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use Illuminate\Mail\Mailable;
 use App\Mail\Idee as IdeeMail;
 use App\Mail\IdeaStatusChanged;
@@ -53,7 +54,8 @@ class IdeeController extends Controller
      */
     public function show(Idee $idee)
     {
-        return view('idees.show', compact('idee'));
+        $commentaires = Commentaire::all();
+        return view('idees.show', compact('idee','commentaires'));
     }
 
     /**

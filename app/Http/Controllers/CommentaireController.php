@@ -29,7 +29,8 @@ class CommentaireController extends Controller
      */
     public function store(StoreCommentaireRequest $request)
     {
-        //
+        Commentaire::create($request->all());
+        return redirect()->back();
     }
 
     /**

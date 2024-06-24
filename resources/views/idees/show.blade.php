@@ -75,25 +75,25 @@
             </div>
             <div class="row">
                 <div class="col-7">
-                    {{-- <ol class="list-group list-group-numbered">
+                    <ol class="list-group list-group-numbered">
                         @foreach ($commentaires as $commentaire )
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{ $commentaire->nom_complet_auteur}}</div>
+                                <div class="fw-bold">{{ $commentaire->nom}}</div>
                                 {{ $commentaire->contenu}}
                             </div>
                         </li>
                         @endforeach
-                    </ol> --}}
+                    </ol>
                 </div>
                 <div class="col-5">
-                    <form action="/commentaires/sauvegarder" method="POST">
+                    <form action="{{route('idees.store')}}" method="POST">
                         @csrf
                         <input type="hidden" name="idee_id" value="{{$idee->id}}">
                         <div class="mb-3">
                             <label for="nom" class="form-label">Présentez vous ! </label>
-                            <input type="text" class="form-control @error('nom_complet_auteur') is-invalid @enderror" id="nom" name="nom_complet_auteur" value="{{ old('nom_complet_auteur') }}">
-                            @error('nom_complet_auteur')
+                            <input type="text" class="form-control @error('nom') is-invalid @enderror" id="nom" name="nom" value="{{ old('nom') }}">
+                            @error('nom')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
