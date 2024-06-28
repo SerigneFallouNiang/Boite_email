@@ -52,7 +52,7 @@
                               
                           @endforeach
                         </ul>
-                        <form method="post" action="{{route('idees.store')}}" class="row g-3">
+                        <form method="post" action="{{route('idees.update')}}" class="row g-3">
                             @csrf
                             <div class="col-md-12">
                                 <label for="bookTitle"   class="form-label">Auteur de l'idée<span class="text-danger">*</span></label>

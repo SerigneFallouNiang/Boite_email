@@ -54,7 +54,7 @@ class IdeeController extends Controller
      */
     public function show(Idee $idee)
     {
-        $commentaires = Commentaire::all();
+        $commentaires = $idee->commentaires;
         return view('idees.show', compact('idee','commentaires'));
     }
 
