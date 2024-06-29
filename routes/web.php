@@ -30,8 +30,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 
 // Dans routes/web.php
-Route::post('/idees/{idee}/accepter', [IdeeController::class, 'accepter'])->name('idees.accepter')->middleware('isAdmin');
-Route::post('/idees/{idee}/refuser', [IdeeController::class, 'refuser'])->name('idees.refuser')->middleware(AdminMiddleware::class);
+Route::post('/idees/{idee}/accepter', [IdeeController::class, 'accepter'])->name('idees.accepter')->middleware('admin');
+Route::post('/idees/{idee}/refuser', [IdeeController::class, 'refuser'])->name('idees.refuser')->middleware('admin');
 
 
 Route::get('/login', [RegisterController::class, 'showLoginForm'])->name('login');

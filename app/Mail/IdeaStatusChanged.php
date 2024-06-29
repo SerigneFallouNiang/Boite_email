@@ -28,7 +28,7 @@ class IdeaStatusChanged extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Statut de votre idée : {$this->idee->nom}',
+            subject: "Validation de l'idée par l'administrateur",
         );
     }
 

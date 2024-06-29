@@ -55,9 +55,8 @@ class User extends Authenticatable
         ];
     }
     public function isAdmin()
-
     {
-        return $this->role_id=== '2'; // Assurez-vous d'avoir un champ 'role' dans votre table users
+        return $this->hasRole('admin');
     }
 
     public function role()
