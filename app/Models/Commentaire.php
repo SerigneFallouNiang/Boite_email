@@ -13,7 +13,6 @@ class Commentaire extends Model
         'nom',
         'email',
         'contenu',
-        'date_de_creation',
         'idee_id',
     ];
 

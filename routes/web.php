@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeeController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -22,14 +23,15 @@ Route::resources([
 Route::get('/categorie/{id}', [IdeeController::class, 'filtrerParCategorie'])->name('idees.categorie')->where('id', '[0-9]+');
 
 
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
 
 // Dans routes/web.php
-Route::post('/idees/{idee}/accepter', [IdeeController::class, 'accepter'])->name('idees.accepter');
-Route::post('/idees/{idee}/refuser', [IdeeController::class, 'refuser'])->name('idees.refuser');
+Route::post('/idees/{idee}/accepter', [IdeeController::class, 'accepter'])->name('idees.accepter')->middleware('isAdmin');
+Route::post('/idees/{idee}/refuser', [IdeeController::class, 'refuser'])->name('idees.refuser')->middleware(AdminMiddleware::class);
 
 
 Route::get('/login', [RegisterController::class, 'showLoginForm'])->name('login');

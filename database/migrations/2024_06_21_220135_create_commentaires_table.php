@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nom');
             $table->string('email');
             $table->string('contenu');
-            $table->string('date_de_creation');
             $table->timestamps();
         });
     }

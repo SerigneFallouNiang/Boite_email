@@ -31,7 +31,7 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', $role)->exists();
     }
-
+   
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -53,5 +53,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function isAdmin()
+
+    {
+        return $this->role_id=== '2'; // Assurez-vous d'avoir un champ 'role' dans votre table users
+    }
+
+    public function role()
+    {
+        return $this->ManuTomany(Idee::class);
     }
 }
