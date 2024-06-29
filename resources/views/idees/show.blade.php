@@ -62,7 +62,6 @@
                     </nav>
                     </div>
                 </div>
-
             </aside><!-- /.blog-sidebar -->
             <hr class="my-5">
         </div><!-- /.row -->
@@ -87,13 +86,20 @@
                     </ol>
                 </div>
                 <div class="col-5">
-                    <form action="{{route('idees.store')}}" method="POST">
+                    <form action="{{route('commentaires.store')}}" method="POST">
                         @csrf
                         <input type="hidden" name="idee_id" value="{{$idee->id}}">
                         <div class="mb-3">
                             <label for="nom" class="form-label">Présentez vous ! </label>
                             <input type="text" class="form-control @error('nom') is-invalid @enderror" id="nom" name="nom" value="{{ old('nom') }}">
                             @error('nom')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Votre email </label>
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+                            @error('email')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>

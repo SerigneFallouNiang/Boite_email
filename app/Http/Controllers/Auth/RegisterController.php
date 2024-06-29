@@ -62,4 +62,10 @@ class RegisterController extends Controller
             'email' => 'Les identifiants fournis ne correspondent pas à nos enregistrements.',
         ]);
     }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
+
+    
 }
