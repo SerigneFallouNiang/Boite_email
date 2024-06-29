@@ -52,8 +52,9 @@
                               
                           @endforeach
                         </ul>
-                        <form method="post" action="{{route('idees.update')}}" class="row g-3">
+                        <form method="post" action="{{route('idees.update', $idee->id)}}" class="row g-3">
                             @csrf
+                            @method('PUT')
                             <div class="col-md-12">
                                 <label for="bookTitle"   class="form-label">Auteur de l'idée<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control  @error('nom') is-invalid @enderror" id="bookTitle" name="nom"  value="{{$idee->nom}}" required>
